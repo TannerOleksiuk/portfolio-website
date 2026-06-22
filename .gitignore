@@ -17,6 +17,11 @@ coverage.*
 *.coverprofile
 profile.cov
 
+# Hugo Files - Output dir, lock, temp caches
+public/
+.hugo_build.lock
+resources/_gen/
+
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
@@ -26,6 +31,7 @@ go.work.sum
 
 # env file
 .env
+.env.*
 
 # Editor/IDE
 # .idea/
