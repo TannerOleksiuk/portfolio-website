@@ -1,16 +1,12 @@
 baseURL = 'https://www.tanneroleksiuk.ca/'
-locale = 'en-us'
-title = 'My New Hugo Project'
+locale = 'en'
+title = 'Tanner Oleksiuk'
 theme = 'anubis2'
 
+sectionPagesMenu = "main"
 
 [[menu.main]]
     name = "Home"
     url = "/"
     weight = 1
-
-[[menu.main]]
-    name = "About"
-    url = "/about"
-    weight = 2
 
