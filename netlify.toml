@@ -1,3 +1,5 @@
+# I don't use netlify, keeping this TOML for now incase I decide to check it out later 
+
 [build]
 command = "mise install && mise run build -b $DEPLOY_URL"
 publish = "public"
