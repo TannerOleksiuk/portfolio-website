@@ -2,8 +2,9 @@
 copyright: © 2026 Copyright.
 
 # A disclaimer notice for the footer. Make sure you have set "params.footer.disclaimer.enable: true" in your `config.yaml` file.
-disclaimer: "THIS SITE IS A WORK IN PROGRESS AND NOT GUARANTEED TO BE ACCURATE. The content on this website only represents Tanner Oleksiuk. Any opinions, views, content, or idea shared on this website are that of his own and do not represent those of any
-company, corporation, client, or other entity."
+disclaimer: "The content on this website represents the personal views of Tanner Oleksiuk only. Where past or current employers, clients, or projects are described, they are presented for informational and resume purposes only and do not represent statements made on behalf of those organizations.
+
+The blog posts, personal projects, code, and technical content shared here are provided for portfolio and informational purposes only. Tanner holds an accredited degree in Electrical Engineering but is not a licensed Professional Engineer (P.Eng.) and is not registered with Engineers and Geoscientists BC (EGBC). Nothing on this site constitutes professional engineering services, advice, or a certified/sealed work product, and none of it should be relied upon as such. All content is provided \"as is,\" without warranty of any kind, and Tanner assumes no liability for any use of or reliance on it."
 
 # Meta description for your site.  This will help the search engines to find your site.
 description: Tanner Oleksiuk's site for showcasing his portfolio, projects, and blog posts.
