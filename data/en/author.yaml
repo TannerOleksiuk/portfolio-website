@@ -13,11 +13,19 @@ contactInfo:
 
 # some summary about what you do
 summary:
-  - I love writing firmware
-  - I love writing software
-  - I love designing circuits
-  - I love working on projects
-  - I love 3D modelling
-  - I love designing products
-  - I love 3D printing
-  - I love learning
+#  - I build embedded firmware
+#  - I design circuit boards
+#  - I debug hardware at 2am
+#  - I automate boring stuff
+#  - I solve hard problems
+#  - I ship products that work
+#  - I model parts in CAD
+#  - I print prototypes overnight
+#  - I tinker with electronics
+#  - I explore new languages
+#  - I break things on purpose
+#  - I self-host my own servers
+#  - I never stop learning
+#  - I read datasheets for fun
+#  - I turn ideas into reality
+#  - I test until it's bulletproof

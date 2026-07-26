@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const strings = Array.from($ul).map($el => $el.textContent)
 
   let typeItInstance = new TypeIt('#typed', {
-    speed: 100,
-    deleteSpeed: 100,
-    lifeLike: false,
+    speed: 65,
+    deleteSpeed: 35,
+    lifeLike: true,
     breakLines: false,
     cursorChar: "|",
     waitUntilVisible: true,
@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (index === 0) {
       // First string: just type it in full
       typeItInstance = typeItInstance.type(string)
+      typeItInstance = typeItInstance.pause(1000) // Pause for 1s after typing
       return
     }
 
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (suffix.length > 0) {
       typeItInstance = typeItInstance.type(suffix)
+      typeItInstance = typeItInstance.pause(1000) // Pause for 1s after typing
     }
   })
 
