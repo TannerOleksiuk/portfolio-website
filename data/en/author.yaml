@@ -1,8 +1,8 @@
 # some information about you
 name: "Tanner Oleksiuk"
-nickname: "Tanner"
+nickname: "Tanner Oleksiuk"
 # greeting message before your name. it will default to "Hi! I am" if not provided
-greeting: "Hi, I am"
+greeting: "Hi, I'm"
 image: "images/author/me.png"
 # give your some contact information. they will be used in the footer
 contactInfo:
@@ -20,28 +20,28 @@ summary:
   # Starters are candidates for initial first string. All will 
   starters: 
   - I write code for embedded systems
-#  - I design circuit boards
-#  - I design products
-#  - I build projects that solve real problems
-#  - I document for the future
-#  - I love learning 
+  - I design circuit boards
+  - I design products
+  - I build projects that solve real problems
+  - I document for the future
+  - I love learning 
   base: # Base strings appear randomly after starter(s)
   - I love challenging myself
   - I solve hard problems
   - I like building software
-#  - I automate repetittive tasks
-#  - I build tools if they're needed
-#  - I read datasheets and textbooks for fun
-#  - I model solutions in CAD
-#  - I simulate circuits before I build
-#  - I write tests that run on their own
-#  - I use Linux for my servers
-#  - I run Linux on embedded hardware
-#  - I solve coding challenges in my sparetime
-#  - I 3D print my own designs
-#  - I tinker with electronics in my spare time
-#  - I know when to buy and when to build
-#  - I can troubleshoot methodologically
-#  - I find bugs at the source
-#  - I fix problems not symptoms
-#
+  - I automate repetittive tasks
+  - I build tools if they're needed
+  - I read datasheets and textbooks for fun
+  - I model solutions in CAD
+  - I simulate circuits before I build
+  - I write tests that run on their own
+  - I use Linux for my servers
+  - I run Linux on embedded hardware
+  - I solve coding challenges in my sparetime
+  - I 3D print my own designs
+  - I tinker with electronics in my spare time
+  - I know when to buy and when to build
+  - I troubleshoot methodologically
+  - I find bugs at the source
+  - I fix problems not symptoms
+
