@@ -42,11 +42,12 @@
   }
 
   img {
-    width: 148px;
-    height: 148px;
+    width: 220px;
+    height: 220px;
     background-color: get-light-color('bg-secondary');
     padding: 5px;
     margin-bottom: 10px;
+    object-fit: cover;
   }
 
   .greeting,
@@ -106,6 +107,18 @@
     .greeting {
       font-size: 24pt;
     }
+  }
+
+  #typed-cursor {
+  display: inline-block;
+  animation: blink 1s step-start infinite;
+  }
+  #typed-cursor.is-typing {
+    animation: none;
+    opacity: 1;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
   }
 }
 

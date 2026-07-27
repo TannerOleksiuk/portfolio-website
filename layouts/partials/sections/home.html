@@ -33,7 +33,7 @@
 
 {{/* apply image processing. don't use "Fit" in svg or gif because its not supported */}}
 {{ if and $authorImage (and (ne $authorImage.MediaType.SubType "svg") ( ne $authorImage.MediaType.SubType "gif")) }}
-{{ $authorImage = $authorImage.Fit "148x148" }}
+{{ $authorImage = $authorImage.Fit "400x400" }}
 {{ end }}
 {{/* get file that matches the filename as specified as src="" in shortcode */}}
 {{ $src := resources.Get $backgroundImage }}
@@ -202,8 +202,7 @@
     <h2 class="greeting-subtitle">{{ $author.subtitle }}</h2>
     {{ end }}
     <div class="typing-carousel">
-      <span id="typed" class="typed"></span>
-      <span class="ityped-cursor"></span>
+      <span id="typed" class="typed"><span id="typed-text"></span><span id="typed-cursor">|</span></span>
     </div>
     {{ $summary := $author.summary }}
     {{ if $summary }}
