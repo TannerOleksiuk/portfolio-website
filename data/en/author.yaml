@@ -13,19 +13,35 @@ contactInfo:
 
 # some summary about what you do
 summary:
-#  - I build embedded firmware
+  # If true, shuffle the starters and base strings randomly
+  shuffle: True 
+  # If true, all starters must display before base strings, otherwise starters are added to base after first starter is used
+  use_all_starters: True 
+  # Starters are candidates for initial first string. All will 
+  starters: 
+  - I write code for embedded systems
 #  - I design circuit boards
-#  - I debug hardware at 2am
-#  - I automate boring stuff
-#  - I solve hard problems
-#  - I ship products that work
-#  - I model parts in CAD
-#  - I print prototypes overnight
-#  - I tinker with electronics
-#  - I explore new languages
-#  - I break things on purpose
-#  - I self-host my own servers
-#  - I never stop learning
-#  - I read datasheets for fun
-#  - I turn ideas into reality
-#  - I test until it's bulletproof
+#  - I design products
+#  - I build projects that solve real problems
+#  - I document for the future
+#  - I love learning 
+  base: # Base strings appear randomly after starter(s)
+  - I love challenging myself
+  - I solve hard problems
+  - I like building software
+#  - I automate repetittive tasks
+#  - I build tools if they're needed
+#  - I read datasheets and textbooks for fun
+#  - I model solutions in CAD
+#  - I simulate circuits before I build
+#  - I write tests that run on their own
+#  - I use Linux for my servers
+#  - I run Linux on embedded hardware
+#  - I solve coding challenges in my sparetime
+#  - I 3D print my own designs
+#  - I tinker with electronics in my spare time
+#  - I know when to buy and when to build
+#  - I can troubleshoot methodologically
+#  - I find bugs at the source
+#  - I fix problems not symptoms
+#

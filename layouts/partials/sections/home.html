@@ -205,13 +205,39 @@
       <span id="typed" class="typed"></span>
       <span class="ityped-cursor"></span>
     </div>
-    <ul id="typing-carousel-data">
-      {{ if $author.summary }}
-      {{ range $author.summary }}
-      <li>{{ . }}</li>
-      {{ end}}
+    {{ $summary := $author.summary }}
+    {{ if $summary }}
+      {{ $isMap := reflect.IsMap $summary }}
+      {{ $starters := slice }}
+      {{ $base := slice }}
+      {{ $shuffle := false }}
+      {{ $useAllStarters := true }}
+       
+      {{ if $isMap }}
+        {{ if $summary.starters }}{{ $starters = $summary.starters }}{{ end }}
+        {{ if $summary.base }}{{ $base = $summary.base }}{{ end }}
+        {{ if $summary.shuffle }}{{ $shuffle = true }}{{ end }}
+        {{ if eq $summary.use_all_starters false }}{{ $useAllStarters = false }}{{ end }}
+      {{ else }}
+        {{/* If summary has no children then assume it is just a flat list, treat it all as base */}}
+        {{ $base = $summary }}
       {{ end }}
-    </ul>
+       
+      <div id="typing-carousel-data"
+           data-shuffle="{{ $shuffle }}"
+           data-use-all-starters="{{ $useAllStarters }}">
+        <ul class="starters">
+          {{ range $starters }}
+            <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+        <ul class="base">
+          {{ range $base }}
+            <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
     {{ if $sections }}
     {{ range first 1 (where (sort $sections "section.weight") ".section.enable" true) }}
     {{ $sectionID := replace (lower .section.name) " " "-" }}
