@@ -19,7 +19,7 @@ company:
 # resume: "files/resume.pdf"
 
 # a summary about you
-summary: 'Work in progress'
+summary: "I'm an embedded systems developer living on Vancouver Island in British Columbia, Canada. I graduated with a bachelor's degree in Electrical Engineering from the University of Victoria in December 2021 with a specialization in Digital Signal Processing. My career has been focused on embedded systems, electronics, and product design; however, I am interested in a broad range of topics in electrical and software engineering. I've worked on projects that have flown in space, transported thousands of people safely, improved the lives of people with disabilities, and kept people powered off the grid. I love what I do and I am always excited to continue learning, creating, and building."
 
 # your social links
 # give as many as you want. use font-awesome for the icons.
@@ -28,23 +28,23 @@ socialLinks:
   icon: "fas fa-envelope"
   url: "tanneroleksiuk+contact@gmail.com"
 
-- name: Github
+- name: GitHub
   icon: "fab fa-github"
   url: "https://www.github.com/TannerOleksiuk"
 
-- name: Stackoverflow
-  icon: "fab fa-stack-overflow"
-  url: "#"
+#- name: Stackoverflow
+#  icon: "fab fa-stack-overflow"
+#  url: "#"
 
 - name: LinkedIn
   icon: "fab fa-linkedin"
-  url: "#"
+  url: "https://www.linkedin.com/in/tanner-oleksiuk-084a47149/"
 
 # You can put custom buttons to link your relevant resources.
 # For example, you can put link for your resume.
-resourceLinks:
-- title: "My Resume"
-  url: "files/resume.pdf"
+#resourceLinks:
+#- title: "My Resume"
+#  url: "files/resume.pdf"
 
 # Show your badges
 # You can show your verifiable certificates from https://www.credly.com.
@@ -55,20 +55,20 @@ badges:
 #  url: "https://www.credly.com/org/the-linux-foundation/badge/exam-developer-certified-kubernetes-security-specialist"
 #  badge: "https://images.credly.com/size/680x680/images/f4bf92ed-8985-40b2-bc07-2f9308780854/kubernetes-security-specialist-logo-examdev.png"
 
-- type: soft-skill-indicator
-  name: Leadership
-  percentage: 85
-  color: blue
-
-- type: soft-skill-indicator
-  name: Team Work
-  percentage: 90
-  color: yellow
-
-- type: soft-skill-indicator
-  name: Hard Working
-  percentage: 85
-  color: orange
+#- type: soft-skill-indicator
+#  name: Leadership
+#  percentage: 85
+#  color: blue
+#
+#- type: soft-skill-indicator
+#  name: Team Work
+#  percentage: 90
+#  color: yellow
+#
+#- type: soft-skill-indicator
+#  name: Hard Working
+#  percentage: 85
+#  color: orange
 
 # you can also provide color code instead of the color name
 # - type: soft-skill-indicator
