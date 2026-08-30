@@ -15,7 +15,7 @@ run = "hugo --gc --minify"
 [tasks.server]
 description = "Run hugo server"
 depends = "install"
-run = "hugo server -w"
+run = "hugo server -w --poll=700ms"
 
 [tasks.update]
 description = "Update the theme to latest release"
