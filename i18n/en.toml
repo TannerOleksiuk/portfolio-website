@@ -1,0 +1,10 @@
+
+# We can use this file to override the english locale text inserted into i18n placeholders.
+# Useful if we don't like what the Toha devs orginally named/called something or if we need to add a new definition. We only use 
+# english right now so no need to worry about other languages.
+
+[letter_grade]
+other = "Grade"
+
+[percent_grade]
+other = "Percent"
