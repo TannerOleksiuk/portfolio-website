@@ -80,8 +80,8 @@
                                 <table>
                                     <thead>
                                         <th class="course-name-header">{{ i18n "course_name"}}</th>
-                                        {{ if not $hideScale  }}<th>{{ i18n "total_credit"}}</th>{{ end }}
-                                        <th>{{ i18n "obtained_credit"}}</th>
+                                        {{ if not $hideScale  }}<th>{{ i18n "letter_grade"}}</th>{{ end }}
+                                        <th>{{ i18n "percent_grade"}}</th>
                                     </thead>
                                     <tbody>
                                         {{ range $index,$course := .takenCourses.courses }}

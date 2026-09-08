@@ -3,102 +3,130 @@ section:
   name: Education
   id: education
   template: sections/education.html # Use "sections/education-alt.html for alternate template.
-  enable: false
+  enable: true
   weight: 4
   showOnNavbar: true
   # Can optionally hide the title in sections
   # hideTitle: true
 
 degrees:
-- name: Ph.D in Quantum Cryptography
-  icon: fa-microscope
-  timeframe: 2016-2020
-  institution:
-    name: ABC University of Technology
-    url: "#"
-    logo: /images/sections/education/tech_college.png
-    # Can optionally show a different logo for dark theme
-    # darkLogo: /images/sections/education/tech_college.png
-  grade: #(optional)
-    scale: CGPA
-    achieved: 3.6
-    outOf: 4
-  publications: #(optional)
-  - title: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    url: "#"
-  - title: Fusce eu augue ut odio porttitor pulvinar.
-    url: "#"
-  - title: Nullam vitae orci tincidunt purus viverra pulvinar.
-    url: "#"
-- name: B.Sc. in Computer Science & Engineering
+- name: Bachelor of Electrical and Computer Engineering with Specialization in Digital Signal Processing
   icon: fa-graduation-cap
-  timeframe: 2012-2016
+  timeframe: 2017-2022
   institution:
-    name: University of XYZ
-    url: "#"
-    logo: /images/sections/education/university.jpg
+    name: University of Victoria
+    url: "https://www.uvic.ca/index.php"
+    logo: /images/sections/education/alumni-logo.webp
     # Can optionally show a different logo for dark theme
     # darkLogo: /images/sections/education/university.jpg
-  grade: #(optional)
-    scale: CGPA
-    achieved: 3.5
-    outOf: 4
+  #grade: #(optional)
+  #  scale: Cumulative GPA
+  #  achieved: 5.91
+  #  outOf: 9.0
   takenCourses: #(optional)
     # if true, the courses will be rendered as a table otherwise it will render as a list and the grades will be hidden.
-    showGrades: true
+    showGrades: false
     collapseAfter: 3
     courses:
-    - name: Data Structures and Algorithm
-      achieved: 3.75
-      outOf: 4
-    - name: Network Security
-      achieved: 3.80
-      outOf: 4
-    - name: Operating System
-      achieved: 3.5
-      outOf: 4
-    - name: Artificial Intelligent
-      achieved: 3.75
-      outOf: 4
-  publications: #(optional)
-  - title: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    url: "#"
-  - title: Fusce eu augue ut odio porttitor pulvinar.
-    url: "#"
+      # To add grades, use achieved and outOf tags
+    - name: Applications of Digital Signal Processing Techniques
+    - name: Optimization for Machine Learning
+    - name: Electrical Drive Systems
+    - name: Electrical Power Systems
+    - name: Practice of Information Security and Privacy
+    - name: Technical Report
+    - name: Introduction to Economics and Financial Project Evaluation
+    - name: Design Project II
+    - name: Technology and Society
+    - name: Electronic Circuits II
+    - name: Mechatronics
+    - name: Computer Vision
+    - name: Medical Image Processing
+    - name: Electronic Devices I
+    - name: Numerical Analysis
+    - name: Design Project I
+    - name: Electromechanical Energy Conversion
+    - name: Control Theory and Systems I
+    - name: Microprocessor-Based Systems
+    - name: Communications Theory and Systems I
+    - name: Applied Electromagnetics and Photonics
+    - name: Electronic Circuits I
+    - name: Digital Signal Processing I
+    - name: Linear Circuits II
+    - name: Mechanical Engineering Fundamentals
+    - name: Introduction to Electrical and Computer Engineering Design
+    - name: Continuous-Time Signals and Systems
+    - name: Electrical Properties of Materials
+    - name: Electricity and Magnetism
+    - name: Introduction to Probability and Statistics I
+    - name: Calculus IV
+    - name: Healthy Sexuality
+    - name: Concepts in Modern Astronomy
+    - name: Calculus III
+    - name: Introduction to Professional Practice
+    - name: Linear Circuits I
+    - name: Fundamentals of Programming With Engineering Applications II
+    - name: Introduction to Computer Architecture
+    - name: Digital Design
+  #publications: #(optional)
+  #- title: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  #  url: "#"
+  #- title: Fusce eu augue ut odio porttitor pulvinar.
+  #  url: "#"
   extracurricularActivities: #(optional)
-  - In vitae facilisis est, eget porta sem.
-  - Vestibulum consectetur lorem justo, at laoreet lorem feugiat et.
-  - Duis sed massa feugiat, ornare justo et, aliquam est.
-  - Pellentesque ut fringilla magna.
-  customSections: #(optional)
-    - name: Thesis
-      content: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    - name: Supervisor
-      content: Fusce eu augue ut odio porttitor pulvinar.
-- name: Higher Secondary School Certificate
-  icon: fa-university
-  timeframe: 2010-2012
+  - Electrical Lead for Biomedical Design Team (2020 to 2021).
+  - Biomedical Design Team Memeber (2019 to 2021).
+  - UVIC Formula Hybrid Electrical Team Member - Power Distribution (2017 to 2019).
+  #- Vestibulum consectetur lorem justo, at laoreet lorem feugiat et.
+  #- Duis sed massa feugiat, ornare justo et, aliquam est.
+  #- Pellentesque ut fringilla magna.
+  #customSections: #(optional)
+  #  - name: Thesis
+  #    content: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  #  - name: Supervisor
+  #    content: Fusce eu augue ut odio porttitor pulvinar.
+- name: Fundamentals of Engineering Certificate
+  icon: fa-building-columns
+  timeframe: 2016-2017
   institution:
-    name: MST College of Science
-    url: "#"
-    logo: /images/sections/education/science_college.png
+    name: Vancouver Island University
+    url: "https://www.viu.ca/"
+    logo: /images/sections/education/viu_dark_blue.jpg
+  takenCourses:
+    showGrades: false
+    collapseAfter: 3
+    courses:
+      - name: Physics for the Physical Sciences II
+      - name: Matrix Algebra for Engineers
+      - name: Calculus for Engineering and Physical Sciences II
+      - name: Engineering Mechanics
+      - name: Engineering Design II
+      - name: Business and Technical Writing
+      - name: Engineering Chemistry
+      - name: Computing Science I
+      - name: University Writing and Research
+      - name: Engineering Design I
+      - name: Calculus for Engineering and Physical Sciences I
+      - name: Physics for the Physical Sciences I
     # Can optionally show a different logo for dark theme
     # darkLogo: /images/sections/education/science_college.png
-  grade: #(optional)
-    scale: GPA
-    achieved: 5
-    outOf: 5
-  extracurricularActivities: #(optional)
-  - In vitae facilisis est, eget porta sem.
-  - Vestibulum consectetur lorem justo, at laoreet lorem feugiat et.
-  - Duis sed massa feugiat, ornare justo et, aliquam est.
-  - Pellentesque ut fringilla magna.
-- name: Secondary School Certificate
+  #grade: #(optional)
+  #  scale: GPA
+  #  achieved: 5
+  #  outOf: 5
+  #extracurricularActivities: #(optional)
+  #- In vitae facilisis est, eget porta sem.
+  #- Vestibulum consectetur lorem justo, at laoreet lorem feugiat et.
+  #- Duis sed massa feugiat, ornare justo et, aliquam est.
+  #- Pellentesque ut fringilla magna.
+- name: French Immersion Dual Dogwood (Secondary School) Diploma
   icon: fa-school
-  timeframe: 2005-2010
+  timeframe: 2012-2016
   institution:
-    name: JK School of Science
-  grade: #(optional)
-    scale: GPA
-    achieved: 4.5
-    outOf: 5
+    name: Ballenas Secondary School / École Secondaire Ballenas
+    url: "https://bss.qsdlearns.ca/"
+    logo: /images/sections/education/bss.webp
+  #grade: #(optional)
+  #  scale: GPA
+  #  achieved: 4.5
+  #  outOf: 5
