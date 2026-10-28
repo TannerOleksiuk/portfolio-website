@@ -2,7 +2,7 @@
 section:
   name: Skills
   id: skills
-  enable: false
+  enable: true 
   weight: 2
   showOnNavbar: true
   filter: true
@@ -13,59 +13,145 @@ section:
 buttons:
 - name: All
   filter: "all"
-- name: Basic
-  filter: "basic"
-- name: Language
-  filter: "language"
-- name: Container
-  filter: "container"
-- name: Others
-  filter: "others"
+- name: Core
+  filter: "core"
+- name: Electrical
+  filter: "electrical"
+- name: Programming
+  filter: "programming"
+- name: Protocols
+  filter: "protocol"
+- name: Tools
+  filter: "tools"
+- name: Other
+  filter: "tools"
 
 # Your Skills.
 # Give a summary of you each skill in the summary section.
 skills:
-- name: Kubernetes
-  logo: /images/sections/skills/kubernetes.png
-  summary: "Capable of deploying, managing application on Kubernetes. Experienced in writing Kubernetes controllers for CRDs."
-  categories: ["container"]
-  url: "https://kubernetes.io/"
 
-- name: Go Development
-  logo: /images/sections/skills/go.png
-  summary: "Using as the main language for professional development. Capable of writing scalable, testable, and maintainable program."
-  categories: ["basic", "language"]
-  url: "https://golang.org/"
+- name: Project Management
+  summary: ""
+  categories: ["core"]
 
-- name: Cloud Computing
-  logo: /images/sections/skills/cloud.png
-  summary: "Worked with most of the major clouds such as GCP, AWS, Azure etc."
-  categories: ["others"]
+- name: Troubleshooting
+  summary: ""
 
-- name: Docker
-  logo: /images/sections/skills/docker.svg
-  summary: "Write most of the programs as dockerized container. Experienced with multi-stage, multi-arch build process."
-  categories: ["container"]
-  url: "https://www.docker.com/"
+- name: Product Design
+  summary: ""
 
-- name: Prometheus
-  logo: /images/sections/skills/prometheus.png
-  summary: "Capable of setup, configure Prometheus metrics. Experienced with PromQL, AlertManager. Also, experienced with writing metric exporters."
-  categories: ["basic"]
-  url: "https://prometheus.io/"
+- name: Languages
+  summary: "Fluent in both english and french"
+
+- name: Time Management
+  summary: ""
+
+- name: PCB Layout
+  logo: /images/sections/skills/pcb.png
+  summary: "Have designed a variety PCBs for products, tools, club projects, and personal projects. Experience with 4-layer board layouts and stackup design, manufacturing considerations, and EMI/EMC considerations."
+  categories: ["electrical"]
+
+- name: Circuit Design
+  logo: /images/sections/skills/circuit_design.png
+  summary: "Designed a variety of digital, analog, and mixed signal circuits. Comfortable reading datasheets, selecting components, and performing design calculations and analysis."
+  categories: ["electrical"]
+
+- name: Bench Testing
+  summary: ""
+  categories: ["electrical", "core"]
+
+
+- name: On-Target Debugging
+  summary: "Troubleshooting with JTAG and SWD using OpenOCD and GDB and with integrated debuggers in IDEs."
+
+- name: I2C
+  summary: "Familiar with I2C hardware and firmware implementation. Used in projects to interact with various peripherals and sensors."
+  categories: ["protocol"]
+
+- name: SPI
+  summary: "Wrote an SPI HAL on STM32 using datasheet and register access. Have used to interact with sensors, displays, and other PCBs."
+  categories: ["protocol"]
+
+- name: CAN
+  summary: "Have used CAN in a variety of projects. Used extensively with RV-C, (very similar to J1939, NMEA2K). Have used for custom communication buses as well."
+  categories: ["protocol"]
+
+- name: UART
+  summary: "Experience with a variety of serial protocols running over a UART connection. Used frequently for debug logs and flashing embedded devices via bootloader."
+  categories: ["protocol"]
+
+- name: Modbus RTU
+  summary: "Have implemented a Modbus master device to control and query a slave over RS-485."
+  categories: ["protocol"]
+
+- name: BLE
+  summary: "Implemented a BLE wireless switch on a custom PCB with NRF52. Familiar with ESP-IDF NimBLE software stack. Have also read various portions of the BLE and Bluetooth specifications documents."
+  categories: ["protocol"]
+
+- name: WiFi & IP
+  summary: "Frequently use WiFi, networking, and internet protocols to implement IoT projects, web applications, and providing OTA updates to embedded devices."
+  categories: ["protocol"]
+
+- name: C/C++
+  logo: /images/sections/skills/c.png
+  summary: "Use C/C++ in embedded environments and on Windows/Linux. Bare metal, FreeRTOS, and embedded Linux."
+  categories: ["programming"]
+
+- name: Python
+  logo: /images/sections/skills/python.png
+  summary: "Frequently use python for test scripts, dev. tools, utilities, web apps, and proof of concepts."
+  categories: ["programming"]
+
+- name: Altium Designer
+  summary: "Used Altium to design most of the PCBs I have produced. My top choice for a professional EDA/ECAD tool."
+
+- name: KiCAD
+  summary: "KiCAD is what I use for most PCB projects I do at home. A great alternative to professional software and has surprisingly advanced features. Bonus points for being Open Source!"
+
+- name: LTSpice
+  summary: "Analyzed designs and circuits using LTSpice to verify operation, transient responses, frequency response, and stability."
+
+- name: SolidWorks
+  summary: "Used SolidWorks for many 3D models. Experience with parts, assemblies, and creating drawings. Mostly worked with solid bodies but have some experience with surfaces as well."
+
+- name: Onshape
+  summary: "OnShape is my go to 3D CAD software for home projects and 3D prints."
+
+- name: GNU Project Debugger (GDB)
+  summary: "Comfortable using GDB for debugging whether integrated into an IDE GUI or with the command line interface. A powerful must have tool for my debugging toolbox."
+
+- name: Buildroot
+  summary: "Compiled custom linux images using buildroot. Have some limited experience applying patches for custom hardware."
+  categories: ["tools", "programming"]
+
+- name: Valgrind
+  summary: "Used Valgrind to find memory leaks and performance issues on an embedded linux application."
+  categories: ["tools", "programming"]
+
+- name: VectorCAST
+  summary: "Implemented on-target unit testing with VectorCAST to achieve near 100% code coverage and edge case testing."
+  categories: ["tools", "programming"]
 
 - name: Linux
   logo: /images/sections/skills/linux.png
-  summary: "Using as the main operating system. Capable of writing bash/shell scripts."
-  categories: ["others"]
+  summary: "Have used Linux as a desktop OS, inside of VMs, on embedded devices, and to run servers."
+  categories: ["tools"]
 
 - name: Git
   logo: /images/sections/skills/git.png
-  summary: "Experienced with git-based development. Mostly, use Github. Also, have experience in working with GitLab."
-  categories: ["basic"]
-  url: "https://git-scm.com/"
+  summary: "Experience using Git for version control. Comfortable in a GUI or terminal. Mostly using GitHub, but also have used GitLab."
+  categories: ["tools"]
 
-- name: C++
-  logo: /images/sections/skills/c++.png
-  summary: "Know basic C/C++ programming. Used for contest programming and problem solving."
-  categories: ["basic", "language"]
+- name: Perforce
+  logo: /images/sections/skills/perforce.png
+  summary: "Have used perforce for software version control and inter-team collaboration."
+  categories: ["tools"]
+
+- name: Docker
+  logo: /images/sections/skills/docker.svg
+  summary: "Have used docker to run servers, web apps, and reproducible build environments."
+  categories: ["tools"]
+
+- name: Microsoft Office
+  summary: "I use the MS Office suite daily. Excel for data processing, tool prototypes, budgeting, BOM management. Word for documentation and general word processing. Outlook, Teams, and OneDrive for communication and collaboration. Powerpoint for presentations and meetings."
+  categories: ["tools"]

@@ -1,6 +1,6 @@
 # section information
 section:
-  name: Experience
+  name: Professional Experience
   id: experiences
   enable: true
   weight: 3
@@ -28,32 +28,32 @@ experiences:
     responsibilities:
     - Developing firmware in C/C++ on RTOS (FreeRTOS) and bare metal for new products.
     - Managing firmware development, releases, changelogs, version control (Git), and issue tracking. 
-    - Defining communication/integration layers, UI/UX, and operational logic on a variety of new products.
-    - Defining requirements and communication with contractors for firmware and product development.
-    - Securing IP with flash encryption and secure boot. 
-    - Developing internal development and sales support software applications for testing, updating devices in the field, or collecting data.
-    - Developing IoT data collection devices for acquiring data the sales team can use to build business cases for products.
-    - Using Microsoft Azure to manage and visualize collected data.
-    - Coordinating the ordering of pre-programmed and encrypted MCU ICs.
-    - Drawing system diagrams and electrical schematics.
     - Reading and using electrical schematics and datasheets to implement firmware.
-    - Quality assurance testing and addressing quality alerts.
-    - Testing hardware with oscilloscopes, bidirectional supplies, solar simulators, logic analyzers and more.
-    - PCB and circuit design and review using Altium.
+    - Defining integration control documentation and communication protocols for interproduct operability.
+    - Defining requirements and communicating with external design contractors for firmware, electrical specifications, and product development.
+    - Implementing security and intellectual property protection with features like secure boot, flash encryption, and handshaking.  
+    - Developing testing scripts, service tools, and development tools using Python and terminal scripting (bash, powershell). 
+    - Coordinating with chip manufacturers and operations team to acquire pre-programmed and encrypted MCUs for production.
+    - Drawing system diagrams and electrical schematics to support the sales team.
+    - Quality assurance testing, addressing/discussing quality alerts, following quality procedures/documents (ECNs, ECRs, FMEAs).
+    - Testing hardware with oscilloscopes, power supplies, DC loads, bidirectional supplies, solar simulators, AC loads, Hi-pot testers, and logic analyzers.
+    - Setting up automated testing workflows and test stands that operate on real hardware.
+    - PCB/circuit design and review using Altium.
+    - Reviewing electronics designs and design decisions/documents from 3rd party contractors.
     - Conducting failure analysis on failed hardware.
     - Working with manufacturers to address production quality issues. 
     - Coordinating with contract manufacturers to load, test and calibrate firmware.
-    - Project and product management.
-    - Documenting procedures, architectures, test reports, and interface control. 
-    - Writing content for technical documents and manuals. 
+    - Documenting procedures, firmware architecture, test reports, and interface control. 
+    - Reviewing, writing, and editing content for user facing technical documents and manuals. 
     - Defining new processes to improve quality, development efficiency, and organization. 
-    - Defining requirements for new products.
-    - Assisting sales teams in technical questions.
-    - Training sales and technical support teams on new products.
-    - Providing advanced technical support for system installers and customers.
-    - Visiting OEMs and customers for support, information gathering, and assisting our sales team. 
+    - Developing on IoT devices for remote data acquisition to support sales and business cases.
+    - Managing Microsoft Azure services and pipelines to collect and visualize data from remote devices.
+    - Training sales and technical support teams on new products, processes, and quality issues.
+    - Providing advanced technical support for system installers and customers. 
+    - Assiting the sales and technical support team with technical questions and troubleshooting.
+    - Visiting OEMs and customers for support, information gathering, and to assist our sales team. 
     - Working with 3rd party integrators and RV OEMs to integrate with our systems and products.
-    - Testing and validating requirements on products.
+    - Managing time and prioritizing tasks in a fast paced work environment.
     - Maintaining membership to RVIA and contributing to RVIA standards and RV-C CAN protocol development. 
 
  # - designation: Junior Software Engineer
@@ -71,7 +71,7 @@ experiences:
     #logo: /images/sections/experiences/company2.jpg
     # Can optionally show a different logo for dark theme
     # darkLogo: /images/sections/experiences/company2.jpg
-    overview: Quester Tangent electronic solutions for passenger and light rail systems for fleet management, control systems, control interfaces, and cybersecurity. The systems I worked on ran in an embedded Linux environment which was custom tailored to the hardware using the Buildroot build system. Projects I worked on included highly-safety critical systems which required me to define and write test documentation that meets TÜV SIL4 requirements. Additionally we adhered to strict coding standards and MISRA C guidelines and used static analysis to reinforce our compliance. 
+    overview: Quester Tangent electronic solutions for passenger and light rail systems for fleet management, control systems, control interfaces, and cybersecurity. The systems I worked on ran in an embedded Linux environment which was custom tailored to the hardware using the Buildroot build system. Projects I worked on included highly-safety critical systems which required me to define and write test documentation that meets TÜV SIL4 requirements. I also helped implement the testing methods defined in the test documentation including on target unit testing, static analysis methods, and analytical methods for proving safe operation. Additionally, I adhered to our company's strict coding standards, MISRA C guidelines and used static analysis to reinforce compliance.
   positions:
   - designation: Embedded Software/Firmware Developer
     start: September 2022
@@ -79,11 +79,14 @@ experiences:
     responsibilities:
     - Writing firmware in C/C++ in an embedded Linux environment and on bare metal systems.
     - Reading electrical schematics and datasheets to implement firmware for custom hardware.
+    - Using Linux's sysfs to interact with hardware and develop abstraction layers.
     - Maintaining and contributing to firmware libraries linked across multiple teams and projects. 
     - Using Buildroot to compile and build custom Linux systems.
     - Writing patches for Linux with Buildroot to support custom hardware.
+    - Configuring Buildroot to run on networking devices and including tools and packages for cybersecurity applications.
+    - Programming SoCs with Linux images and configuring bootloaders to boot the image. 
     - Adhering to company coding guidelines and MISRA C guidelines on safety critical code.
-    - Performing regular firmware releases using a strict process to ensure testing, changelog updates, ERP system updates, and company wide notification.
+    - Performing scheduled firmware releases using a strict process to ensure testing, changelog updates, ERP system updates, and company wide notification.
     - Reading and understanding the standards and requirements defined by TÜV to develop and test software/firmware for SIL4 systems.
     - Defining testing practices, tools, and procedures for safety integrity level 4 (SIL4) systems that meet the standards of TÜV.
     - Documenting test procedures for SIL4 systems that meets TÜV requirements. 
@@ -92,19 +95,87 @@ experiences:
     - Defining unit tests in VectorCAST to run on target. 
     - Version control with Perforce.
     - Participating in SCRUM/Agile development workflows. 
-    - Writing API/Interface Control documents for internal software development teams who build ontop of the HAL the firmware team maintains.
+    - Writing API/Interface Control documents to define the hardware abstraction layer developed by the firmware team for higher level software developers.
     - Coordinating with other internal software development teams to solve bugs and issues when integrating.
 
 - company:
-    name: UVIC Centre for Aerospace Research (CfAR)
+    name: UVIC Centre for Aerospace Research (CFAR) (Co-op)
     url: "https://www.orcasat.ca/"
     location: Victoria, BC
     #logo: /images/sections/experiences/company2.jpg
     # Can optionally show a different logo for dark theme
     # darkLogo: /images/sections/experiences/company2.jpg
-    overview: The centre for aerospace research is a research facility with the University of Victoria that develops and researches various aerospace topics including unmanned aerial vehicles (UAVs) and [CubeSats](https://www.asc-csa.gc.ca/eng/satellites/cubesat/what-is-a-cubesat.asp).
+    overview: The centre for aerospace research is a research facility with the University of Victoria that develops and researches various aerospace topics including unmanned aerial vehicles (UAVs) and [CubeSats](https://www.asc-csa.gc.ca/eng/satellites/cubesat/what-is-a-cubesat.asp). While at CfAR I worked on the Optical Reference Calibration Satellite ([ORCASat](https://www.orcasat.ca/)) optical payload. The payload consisted of a 660 nm and 840 nm lasers located inside of an integrating sphere to produce a uniform light source which could be used by ground telescope as an optical reference for calibration. The laser light was measured by two photodiodes, one Si and one InGaAs. The photocurrent was measured with a transimpedance amplifier and measured by a 24-bit ADC. This was the last of my engineering degree co-op work terms of which I opted to do an extra term to see the project through to the launch date. 
   positions:
-  - designation: Precision Analog Electronics Developer/Engineering Co-op
+  - designation: Precision Analog Electronics Engineer Co-op
     start: September 2021
     end: April 2022
     responsibilities:
+      - Developing firmware for the Payload module to perform data collection, signal processing, and transfering data to the on-board computer module.
+      - Reading datasheets of electrical components for debugging, testing, and firmware development.
+      - Reading and updating electrical schematics.
+      - Reviewing PCBs and electonics designs.
+      - Assembling PCBs and doing board bring up testing.
+      - Repairing PCBs and replacing components on damaged boards.
+      - Carefully assembling spacecraft components (optical payload) in a cleanroom/laminar flow workstation and applying hygienic assembly techniques.
+      - Defining and discussing assembly procedures with cross functional team members. 
+      - Defining and writing automated interface tests using pytest to verify communication API and Payload functionality when integrated with other system modules.
+      - Documenting interface control, firmware design and architecture, verification and testing documents, and calibration procedures.
+      - Performing hardware verification tests and writing reports against project requirements.
+      - Working in a team to troubleshoot integration and communication problems.
+      - Defining new, updated, or obscelescence of requirements for the project.
+      - Using precision test equipment for testing and validating hardware and optical electronics. Source measurement units (nA range), Optical spectrum analyzers, multimeters, precision nA current sources, oscillscopes, and logic analyzers.
+      - Calibrating 24-bit ADC measurement data at various amplifier gain stages for sub-microamp to miliamp measurement ranges.
+      - Isolating noise and performing signal processing using firmware and Excel to obtain precision signals from sensitive electronics.
+      - Attending project management meetings and coordinating integration efforts, time, and outstanding tasks between teams.
+      - Working, cleaning, and maintaining hygiene in an ISO7 cleanroom and ISO5 laminar flow workstation.
+
+- company: 
+    name: NorthWest Fabworks (Co-op)
+    url: "https://northwestfab.com/"
+    location: Parksville, BC
+    #logo: /images/sections/experiences/company2.jpg
+    # Can optionally show a different logo for dark theme
+    # darkLogo: /images/sections/experiences/company2.jpg
+    overview: At Northwest Fabworks I did a variety of roles varying from 3D CAD design (SolidWorks), PCB design (Circuit Studio), quality inspections and finishing (deburring and thread tapping) of machined parts. I also got some experience operating CNC machines at a basic level, verifying critical tolerances on parts, and manually editing G-code offsets to adjust for tool wear and other factors that causes tolerance to drift. I learned a lot about how parts are machined, what CNC is capable of, and how to design parts for manufactureability. In addition to these responsibilities, I also designed a 4-layer PCB, and some other peripheral PCBs for some aviation product prototypes that were in development. Furthermore, I helped design the machined product enclosure and contributed to the overall prodcut design and requirements. While working on the aviation product prototype, I read, learned, and applied a variety of aviation product safety standards that need to be followed on a product intended for use on an aircraft.
+  positions: 
+  - designation: Electrical Engineering Co-op
+    start: May 2020 
+    end: August 2020
+    responsibilities:
+      - PCB, circuit design (CircuitStudio), board assembly and bring up.
+      - Product prototyping and design for manufacturing.
+      - Part and enclosure design in 3D CAD (SolidWorks).
+      - Quality assurance of machined parts including measurement and tolerance verification.
+      - Part finishing, thread tapping, sandblasting, grinding, deburring. 
+      - CNC machine loading and operation, part checking, and tool changing.
+      - Maintaining shop cleanliness.
+      - Assisting machinists and fabricators.
+
+- company: 
+    name: CanAssist (Co-op)
+    url: "https://canassist.ca/"
+    location: Victoria, BC
+    #logo: /images/sections/experiences/company2.jpg
+    # Can optionally show a different logo for dark theme
+    # darkLogo: /images/sections/experiences/company2.jpg
+    overview: While working at CanAssist, I obtained some of the most valuable, treasured, and enjoyable experiences in my professional career. I designed and delivered multiple technologies from start to finish while working at CanAssist. I got experience doing mechanical design work (3D modelling and enclosures), designed multiple PCBs and circuits, and writing firmware for the designs. I had the joy of delivering a wireless bluetooth accessibility switch ([example of wired swich](https://www.ablenetinc.com/jelly-bean)) that I developed to a student who had a disability that affected his fine motor skills. Later, I was forwarded an email stating that the "impact has been incredible..." and that the student was able to fully participate in their cooking class in ways they never could before. Learning that a technology I developed impacted someone this positively has been a huge driver for me to continue learning and developing technology. It remains as the proudest moment of my career.
+  positions:
+  - designation: Electrical Design Technician
+    start: May 2019 
+    end: April 2020
+    responsibilities:
+      - Designing assistive technology solutions.
+      - Reverse engineering and adapting existing 3rd party products to be accessible.
+      - PCB and circuit design including RF considerations (BLE).
+      - Enclosure design and 3D modelling with SolidWorks.
+      - Writing firmware for designed technologies. 
+      - Troubleshooting, Reworking, and repairing electronics and returned broken technologies.
+      - Assembly of circuit boards and performing bring up testing on new designs.
+      - Assembling technologies and components into completed assistive solutions. 
+      - Delivering and training clients on completed technologies.
+      - Project and time management/tracking. 
+      - Maintaining an electronics laboratory and keeping it stocked with common components.
+      - Working with people with disabilities and their caretakers to understand their specific challenges, needs, and desires, for assistive technology.
+      - Communicating appropriately, clearly, and respectfully with people who have disabilties.
+
