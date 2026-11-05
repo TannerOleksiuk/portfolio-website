@@ -17,10 +17,10 @@ buttons:
   filter: "core"
 - name: Electrical
   filter: "electrical"
+- name: Embedded
+  filter: "embedded"
 - name: Programming
   filter: "programming"
-- name: Protocols
-  filter: "protocol"
 - name: Tools
   filter: "tools"
 - name: Other
@@ -30,127 +30,131 @@ buttons:
 # Give a summary of you each skill in the summary section.
 skills:
 
-- name: Project Management
-  summary: ""
+- name: Troubleshooting
+  summary: "Have put in many hours of troubleshooting whether on electrical hardware, firmware/software, or mechanical interactions. Applying methodologies, processes, and using appropriate tools to find and understand the core causes of an issue and to come up with an effective solution."
   categories: ["core"]
 
-- name: Troubleshooting
-  summary: ""
-
 - name: Product Design
-  summary: ""
+  summary: "Experience working on products from conception to production to post-production and maintenance. Mostly working in the design phase, but I have participated in idea generation, reviewed feasibility and business cases, testing and validation, and worked to identify and resolve production quality issues. I've also provided feedback and done design work on manufacturability, UI/UX, and product viability."
+  categories: ["core"]
 
 - name: Languages
-  summary: "Fluent in both english and french"
+  summary: "Native profiency in English with a intermediate level of French (K-12 French immersion graduate)."
+  categories: ["core"]
+
+- name: Communication
+  summary: "Effective at communicating technical topics with non-technical and technical parties in person and through documentation, emails, online meetings, presentations, training sessions, and support calls."
+  categories: ["core"]
 
 - name: Time Management
-  summary: ""
+  summary: "Managed and tracked time effectively when multi-tasking on on-going projects, tasks, and asynchronous engineering requests."
+  categories: ["core"]
 
 - name: PCB Layout
   logo: /images/sections/skills/pcb.png
   summary: "Have designed a variety PCBs for products, tools, club projects, and personal projects. Experience with 4-layer board layouts and stackup design, manufacturing considerations, and EMI/EMC considerations."
-  categories: ["electrical"]
+  categories: ["electrical", "embedded"]
 
 - name: Circuit Design
   logo: /images/sections/skills/circuit_design.png
   summary: "Designed a variety of digital, analog, and mixed signal circuits. Comfortable reading datasheets, selecting components, and performing design calculations and analysis."
-  categories: ["electrical"]
+  categories: ["electrical", "embedded"]
+
+- name: Digital Circuits
+
+- name: Analog Circuits 
 
 - name: Bench Testing
-  summary: ""
-  categories: ["electrical", "core"]
+  summary: "Familiar with a wide variety of electrical bench test equipment to perform bring up testing, verification testing, and troubleshooting. Oscilloscopes, Digital Multimeters, Power Supplies, Source Measurement Units, Bidirectional DC Supplies, AC and DC Electronic Loads, Logic Analyzers, Solar Simulators, "
+  categories: ["electrical", "core", "embedded"]
 
+- name: Automated Testing
+  summary: ""
+  categories: ["core", "electrical", "embedded", "programming"]
 
 - name: On-Target Debugging
-  summary: "Troubleshooting with JTAG and SWD using OpenOCD and GDB and with integrated debuggers in IDEs."
+  summary: "Troubleshooting with JTAG and SWD using ST-Link, Segger J-Link, OpenOCD and GDB integrated into VS Code, Eclipse derivatives, and Visual Studio derivatives. Have some experience using GDB on the command line in an embedded Linux environment."
+  categories: ["electrical", "embedded"]
 
-- name: I2C
-  summary: "Familiar with I2C hardware and firmware implementation. Used in projects to interact with various peripherals and sensors."
-  categories: ["protocol"]
+- name: Wired Protocols
+  summary: "Experience with a variety of communication protocol hardware for interfacing with sensors/peripherals, inter-device system communication, MCU-MCU communication, firmware updating, and providing APIs for 3rd party integration. SPI, I2C, CAN, UART, RS-485, USB."
+  categories: ["electrical", "embedded"]
 
-- name: SPI
-  summary: "Wrote an SPI HAL on STM32 using datasheet and register access. Have used to interact with sensors, displays, and other PCBs."
-  categories: ["protocol"]
+- name: Wireless Protocols
+  summary: "Experience using WiFi for IoT applications, web-apps, remote control and data logging. Have used BLE/Bluetooth on NRF52 and ESP32 devices for device-to-device communication and testing scripts/PC apps."
+  categories: ["embedded"]
 
-- name: CAN
-  summary: "Have used CAN in a variety of projects. Used extensively with RV-C, (very similar to J1939, NMEA2K). Have used for custom communication buses as well."
-  categories: ["protocol"]
-
-- name: UART
-  summary: "Experience with a variety of serial protocols running over a UART connection. Used frequently for debug logs and flashing embedded devices via bootloader."
-  categories: ["protocol"]
-
-- name: Modbus RTU
-  summary: "Have implemented a Modbus master device to control and query a slave over RS-485."
-  categories: ["protocol"]
-
-- name: BLE
-  summary: "Implemented a BLE wireless switch on a custom PCB with NRF52. Familiar with ESP-IDF NimBLE software stack. Have also read various portions of the BLE and Bluetooth specifications documents."
-  categories: ["protocol"]
-
-- name: WiFi & IP
-  summary: "Frequently use WiFi, networking, and internet protocols to implement IoT projects, web applications, and providing OTA updates to embedded devices."
-  categories: ["protocol"]
+- name: Software Protocol Stacks
+  summary: "Implemented higher level protocols in applications and embedded devices. WebSockets, HTTP, RV-C (Similarities with J1939 and NMEA2K), Modbus RTU. Have written abstraction layers for SPI, UART, CAN and I2C at various levels using direct register access, manufacturer HALs and drivers, and application ready libraries."
+  categories: ["programming", "embedded"]
 
 - name: C/C++
   logo: /images/sections/skills/c.png
   summary: "Use C/C++ in embedded environments and on Windows/Linux. Bare metal, FreeRTOS, and embedded Linux."
-  categories: ["programming"]
+  categories: ["programming", "embedded"]
 
 - name: Python
   logo: /images/sections/skills/python.png
   summary: "Frequently use python for test scripts, dev. tools, utilities, web apps, and proof of concepts."
   categories: ["programming"]
 
-- name: Altium Designer
-  summary: "Used Altium to design most of the PCBs I have produced. My top choice for a professional EDA/ECAD tool."
+- name: Web Development
+  summary: "Working knowledge of HTML, CSS, and Javascript. Have built web dashboards and interfaces for custom IoT devices, built small web applications and websites, and developped this portfolio site. I've worked at basic levels with React, Django, Flask, Hugo, Tailwind CSS, Vite, NextJS. I am familiar with SQL queries and databases, and have also dabbled with non-SQL databases like MongoDB for small personal projects."
+  categories: ["programming"]
 
-- name: KiCAD
-  summary: "KiCAD is what I use for most PCB projects I do at home. A great alternative to professional software and has surprisingly advanced features. Bonus points for being Open Source!"
+- name: 
+
+- name: Assembly
+  summary: "General knowledge of basic assembly instructions and layout. Have written basic programs/algorithms on ARM Cortex-M based processors, inline snippets, and read compiled assembly for debugging and tool configuration."
+  categories: ["programming", "embedded"]
+
+- name: EDA/ECAD
+  summary: "Experience with Altium to design PCBs at various jobs and in university through club work and co-ops. I use KiCAD at home for personal projects requiring custom PCBs."
+  categories: ["tools", "electrical"]
 
 - name: LTSpice
   summary: "Analyzed designs and circuits using LTSpice to verify operation, transient responses, frequency response, and stability."
+  categories: ["tools", "electrical"]
 
-- name: SolidWorks
-  summary: "Used SolidWorks for many 3D models. Experience with parts, assemblies, and creating drawings. Mostly worked with solid bodies but have some experience with surfaces as well."
-
-- name: Onshape
-  summary: "OnShape is my go to 3D CAD software for home projects and 3D prints."
+- name: 3D CAD / Modelling
+  summary: "Experience using SolidWorks and Onshape for 3D modelling both at work and for home projects. I use 3D cad for designing custom enclosures, testing jigs, 3D prints, product design, reverse engineering parts, and woodworking. I've also designed parts for machining and understand the basics of designing for manufacturing. I have experience with solid bodies, surfaces, sheet metal/flex PCB bending, gears, threads, assemblies, generating and laying out drawings."
+  categories: ["tools"]
 
 - name: GNU Project Debugger (GDB)
-  summary: "Comfortable using GDB for debugging whether integrated into an IDE GUI or with the command line interface. A powerful must have tool for my debugging toolbox."
+  summary: "Debugged embedded firmare and software applications with GDB. Mostly using UIs/integrated versions in IDEs but have some limited experience on the command line interface as well."
+  categories: ["tools", "programming", "embedded"]
 
 - name: Buildroot
   summary: "Compiled custom linux images using buildroot. Have some limited experience applying patches for custom hardware."
-  categories: ["tools", "programming"]
+  categories: ["tools", "programming", "embedded"]
 
 - name: Valgrind
-  summary: "Used Valgrind to find memory leaks and performance issues on an embedded linux application."
-  categories: ["tools", "programming"]
+  summary: "Used Valgrind to find memory leaks and performance issues on an embedded Linux application."
+  categories: ["tools", "programming", "embedded"]
 
 - name: VectorCAST
-  summary: "Implemented on-target unit testing with VectorCAST to achieve near 100% code coverage and edge case testing."
+  summary: "Implemented on-target unit testing on an embedded device with VectorCAST."
   categories: ["tools", "programming"]
 
 - name: Linux
   logo: /images/sections/skills/linux.png
   summary: "Have used Linux as a desktop OS, inside of VMs, on embedded devices, and to run servers."
-  categories: ["tools"]
+  categories: ["tools", "embedded"]
 
 - name: Git
   logo: /images/sections/skills/git.png
   summary: "Experience using Git for version control. Comfortable in a GUI or terminal. Mostly using GitHub, but also have used GitLab."
-  categories: ["tools"]
+  categories: ["tools", "programming", "embedded"]
 
 - name: Perforce
   logo: /images/sections/skills/perforce.png
   summary: "Have used perforce for software version control and inter-team collaboration."
-  categories: ["tools"]
+  categories: ["tools", "programming", "embedded"]
 
 - name: Docker
   logo: /images/sections/skills/docker.svg
   summary: "Have used docker to run servers, web apps, and reproducible build environments."
-  categories: ["tools"]
+  categories: ["tools", "programming"]
 
 - name: Microsoft Office
   summary: "I use the MS Office suite daily. Excel for data processing, tool prototypes, budgeting, BOM management. Word for documentation and general word processing. Outlook, Teams, and OneDrive for communication and collaboration. Powerpoint for presentations and meetings."

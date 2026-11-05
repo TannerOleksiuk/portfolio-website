@@ -1,6 +1,6 @@
 # section information
 section:
-  name: Professional Experience
+  name: Experience
   id: experiences
   enable: true
   weight: 3
@@ -20,7 +20,7 @@ experiences:
     # company overview
     overview: GoPower! (acquired by Dometic corporation) designs and manufactures solar panels, inverters, chargers, batteries, and solar charge controllers. I worked on the product development team as a firmware developer and lead the development on a variety of firmware projects. Projects frequently ran on an RTOS and involved using CAN, RS485, UART, SPI, and I2C to communicate with peripherals, other products, and other MCUs. On top of firmware, I was involved in many other aspects of product development and business operations.
   positions:
-  - designation: Embedded Firmware Developper
+  - designation: Embedded Firmware Developer
     start: May 2023
     # don't provide end date if you are currently working there. It will be replaced by "Present"
     # end: Dec 2020
