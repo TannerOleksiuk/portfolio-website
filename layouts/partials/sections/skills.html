@@ -28,7 +28,7 @@
     <div class="row" id="primary-skills">
   {{ end }}
       {{ range .skills }}
-      {{ partial "cards/skill.html" . }}
+      {{ partial "cards/skill.html" (dict "skill" . "cfg" $) }}
     {{ end }}
     </div>
   </div>

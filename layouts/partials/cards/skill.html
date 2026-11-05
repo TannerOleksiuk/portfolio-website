@@ -1,28 +1,93 @@
-<div class="col-xs-12 col-sm-6 col-lg-4 pt-2 filtr-item"
-  data-category='all, {{ with .categories }}{{ delimit . ","}}{{ end }}'
+{{- /*
+  Expects: (dict "skill" <skill entry> "cfg" <whole skills.yaml data>)
+  Scale resolution: skill.scale > first matching tag in cfg.tag_scales > cfg.scale > built-in default
+*/ -}}
+{{- $s := .skill -}}
+{{- $cfg := .cfg -}}
+
+{{- if $s.name }}
+
+{{- /* ---- scale ---- */ -}}
+{{- $defaultScale := slice
+      (dict "min" 0  "label" "Learning"    "color" "#b45309")
+      (dict "min" 30 "label" "Comfortable" "color" "#0e7490")
+      (dict "min" 60 "label" "Proficient"  "color" "#1d4ed8")
+      (dict "min" 85 "label" "Mastery"     "color" "#15803d") -}}
+{{- $scale := $cfg.scale | default $defaultScale -}}
+{{- $tagScales := $cfg.tag_scales | default dict -}}
+{{- $found := false -}}
+{{- range $s.categories }}
+  {{- if not $found }}
+    {{- with index $tagScales . }}{{ with .scale }}{{ $scale = . }}{{ $found = true }}{{ end }}{{ end }}
+  {{- end }}
+{{- end -}}
+{{- with $s.scale }}{{ $scale = . }}{{ end -}}
+
+{{- /* ---- tier + label ---- */ -}}
+{{- $hasLevel := isset $s "level" -}}
+{{- $tier := dict -}}
+{{- $label := "" -}}
+{{- $showLabel := true -}}
+{{- if isset $cfg "show_labels" }}{{ $showLabel = $cfg.show_labels }}{{ end -}}
+{{- if $s.hide_label }}{{ $showLabel = false }}{{ end -}}
+{{- if $hasLevel }}
+  {{- $sorted := sort $scale "min" -}}
+  {{- $tier = index $sorted 0 -}}
+  {{- range $sorted }}{{ if ge $s.level .min }}{{ $tier = . }}{{ end }}{{ end -}}
+  {{- $label = $s.label | default $tier.label -}}
+{{- end -}}
+
+{{- /* ---- link: explicit url wins, else newest post with `skills: [project_tag]` ---- */ -}}
+{{- $url := $s.url -}}
+{{- if and (not $url) $s.project_tag }}
+  {{- $matches := where site.RegularPages "Params.skills" "intersect" (slice $s.project_tag) -}}
+  {{- with $matches.ByDate.Reverse }}{{ with index . 0 }}{{ $url = .RelPermalink }}{{ end }}{{ end -}}
+{{- end -}}
+{{- $hasDetails := or $s.summary $url -}}
+
+<div class="col-xs-12 col-sm-6 col-lg-4 pt-2 filtr-item skill-item"
+  data-category='all, {{ with $s.categories }}{{ delimit . ","}}{{ end }}'
 >
-  <a class="text-decoration-none" {{ if .url }}href="{{ .url }}" title="{{ .name }}" target="_blank" rel="noopener"{{ end }}>
-    <div class="card">
+  <a class="text-decoration-none" {{ if $url }}href="{{ $url }}" title="{{ $s.name }}" target="_blank" rel="noopener"{{ end }}>
+    <div class="card" {{ if and $hasDetails (not $url) }}tabindex="0"{{ end }}>
       <div class="card-head d-flex">
-        {{ if .logo }}
-          {{ $logoImage := resources.Get .logo }}
+        {{ if $s.logo }}
+          {{ $logoImage := resources.Get $s.logo }}
           {{/*  svg don't support "Fit" operation   */}}
           {{ if ne $logoImage.MediaType.SubType "svg" }}
             {{ $logoImage = $logoImage.Fit "24x24" }}
           {{ end }}
-        
-          <img class="card-img-xs" src="{{ $logoImage.RelPermalink }}" alt="{{ .name }}" />
-          <h5 class="card-title">{{ .name }}</h5>
-        {{ else if .icon }}
-          {{ $iconName := .icon }}
-          <h5 class="card-title"><span class="{{ $iconName }}"> {{ .name }}</span></h5>
+          <img class="card-img-xs" src="{{ $logoImage.RelPermalink }}" alt="{{ $s.name }}" />
+          <h5 class="card-title">{{ $s.name }}</h5>
+        {{ else if $s.icon }}
+          <h5 class="card-title"><span class="{{ $s.icon }}"> {{ $s.name }}</span></h5>
         {{ else }}
-          <h5 class="card-title">{{ .name }}</h5>
+          <h5 class="card-title">{{ $s.name }}</h5>
         {{ end }}
       </div>
-      <div class="card-body text-justify pt-1 pb-1">
-        <p class="card-text">{{ .summary | markdownify }}</p>
+
+      {{ if $hasLevel }}
+      <div class="skill-bar-wrap">
+        <div class="skill-bar" role="meter" aria-label="{{ $s.name }} confidence"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ $s.level }}"
+             aria-valuetext="{{ $tier.label }}"
+             style="--pct: {{ $s.level }}%; --tier: {{ $tier.color }};">
+          <span class="skill-bar__fill"></span>
+          {{ if $showLabel }}
+          <span class="skill-bar__text">{{ $label }}</span>
+          <span class="skill-bar__text skill-bar__text--on-fill" aria-hidden="true">{{ $label }}</span>
+          {{ end }}
+        </div>
       </div>
+      {{ end }}
+
+      {{ if $hasDetails }}
+      <div class="skill-details">
+        {{ with $s.summary }}<p class="card-text">{{ . | markdownify }}</p>{{ end }}
+        {{ if $url }}<span class="skill-details__proof">{{ $s.project_label | default "See it in practice" }}</span>{{ end }}
+      </div>
+      {{ end }}
     </div>
   </a>
 </div>
+{{- end }}

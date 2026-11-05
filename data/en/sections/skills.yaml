@@ -26,6 +26,32 @@ buttons:
 - name: Other
   filter: "tools"
 
+# Global default for the text on the bar. Set false to hide all labels.
+show_labels: true
+
+# Global confidence scale. A card's `level` (0-100) picks the tier with the
+# highest `min` that is <= level. Rename, recolor, or add tiers freely.
+scale:
+- { min: 0,  label: "Learning",    color: "#b45309" }
+- { min: 30, label: "Comfortable", color: "#0e7490" }
+- { min: 60, label: "Proficient",  color: "#1d4ed8" }
+- { min: 85, label: "Mastery",     color: "#15803d" }
+
+# Optional per-tag overrides. These use the same tags as your cards
+# `categories`. If a card has several tags, the first one listed on the card
+# that has an override here wins.
+tag_scales:
+  tools:
+    scale:
+    - { min: 0,  label: "Tried it",     color: "#b45309" }
+    - { min: 40, label: "Used on jobs", color: "#1d4ed8" }
+    - { min: 80, label: "Daily driver", color: "#15803d" }
+  core:
+    scale:
+    - { min: 0,  label: "Developing", color: "#b45309" }
+    - { min: 50, label: "Strong",     color: "#1d4ed8" }
+    - { min: 80, label: "Strength",   color: "#15803d" }
+  
 # Your Skills.
 # Give a summary of you each skill in the summary section.
 skills:
@@ -54,6 +80,10 @@ skills:
   logo: /images/sections/skills/pcb.png
   summary: "Have designed a variety PCBs for products, tools, club projects, and personal projects. Experience with 4-layer board layouts and stackup design, manufacturing considerations, and EMI/EMC considerations."
   categories: ["electrical", "embedded"]
+  level: 90
+  hide_label: false
+  url: "https://www.google.ca"
+
 
 - name: Circuit Design
   logo: /images/sections/skills/circuit_design.png
