@@ -23,93 +23,114 @@
     </div>
   </div>
   {{ end }}
-  <div class="container d-flex-block">
+  <div class="container skills-layout">
     <div class="skills-grid" id="skill-card-holder">
       {{ range .skills }}
       {{ partial "cards/skill.html" (dict "skill" . "cfg" $) }}
       {{ end }}
     </div>
+
+    {{- /* Detail panel: shows the hovered/focused card's details so the cards
+           themselves never change size. Mouse-only aid; each card still holds
+           its own details (shown inline on touch screens, read by screen
+           readers), so this is aria-hidden. */}}
+    <aside class="skill-panel" id="skill-panel" aria-hidden="true">
+      <div class="skill-panel__empty">
+        <p class="skill-panel__hint">Hover over a skill to see the details.</p>
+        {{ with .scale }}
+        <ul class="skill-panel__legend">
+          {{ range sort . "min" }}
+          <li><span class="skill-panel__swatch" style="background: {{ .color | safeCSS }};"></span>{{ .label }}</li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      </div>
+      <div class="skill-panel__content" hidden>
+        <div class="skill-panel__head"></div>
+        <div class="skill-panel__bar"></div>
+        <div class="skill-panel__summary"></div>
+        <a class="skill-panel__link" target="_blank" rel="noopener" tabindex="-1" hidden></a>
+      </div>
+    </aside>
   </div>
 </div>
 
 <script>
+// Fills the detail panel from whichever card the mouse settles on.
 (function () {
   var holder = document.getElementById('skill-card-holder');
-  if (!holder) return;
+  var panel = document.getElementById('skill-panel');
+  if (!holder || !panel) return;
 
-  // ---- Hand-off to the card below ----
-  // Leaving an open card through its bottom edge opens the card directly below
-  // straight away. The card above then closes and slides that card up under the
-  // pointer, which is already inside it instead of in the gap.
-  var handoff = null, handoffAt = 0;
-  var resting = false, restX = 0, restY = 0; // see "Close on click" below
-  var SETTLE = 400; // ms: about the length of the open/close transition
+  var empty = panel.querySelector('.skill-panel__empty');
+  var content = panel.querySelector('.skill-panel__content');
+  var headEl = panel.querySelector('.skill-panel__head');
+  var barEl = panel.querySelector('.skill-panel__bar');
+  var summaryEl = panel.querySelector('.skill-panel__summary');
+  var linkEl = panel.querySelector('.skill-panel__link');
+
+  // Hover intent: the panel switches only once the pointer slows down on a
+  // card (moves less than SENSITIVITY px over one INTERVAL), so sweeping
+  // across cards on the way somewhere doesn't flick through them.
+  var INTERVAL = 80, SENSITIVITY = 8;
+  var active = null, candidate = null, poll = 0;
+  var x = 0, y = 0, px = 0, py = 0;
 
   function itemOf(node) {
     return node && node.closest ? node.closest('.skill-item') : null;
   }
 
-  function clearHandoff() {
-    if (handoff) handoff.classList.remove('is-handoff');
-    handoff = null;
+  function show(item) {
+    if (item === active) return;
+    if (active) active.classList.remove('is-active');
+    active = item;
+    if (!item) { content.hidden = true; empty.hidden = false; return; }
+    item.classList.add('is-active');
+
+    var head = item.querySelector('.card-head');
+    headEl.replaceChildren.apply(headEl, Array.prototype.map.call(head.childNodes, function (n) { return n.cloneNode(true); }));
+    var bar = item.querySelector('.skill-bar, .skill-divider');
+    barEl.replaceChildren(bar ? bar.cloneNode(true) : '');
+    var text = item.querySelector('.skill-details .card-text');
+    summaryEl.innerHTML = text ? text.innerHTML : '';
+    summaryEl.hidden = !text;
+    var a = item.querySelector('a[href]');
+    var proof = item.querySelector('.skill-details__proof');
+    linkEl.hidden = !a;
+    if (a) { linkEl.href = a.href; linkEl.textContent = proof ? proof.textContent : 'See it in practice'; }
+
+    empty.hidden = true;
+    content.hidden = false;
+    if (content.animate) content.animate([{ opacity: 0.35 }, { opacity: 1 }], { duration: 150, easing: 'ease-out' });
   }
 
-  function cardBelow(item, x) {
-    var r = item.getBoundingClientRect();
-    var best = null, bestTop = Infinity;
-    holder.querySelectorAll('.skill-item:not([hidden])').forEach(function (el) {
-      if (el === item) return;
-      var b = el.getBoundingClientRect();
-      if (b.top >= r.bottom - 1 && b.left <= x && x <= b.right && b.top < bestTop) {
-        best = el; bestTop = b.top;
-      }
-    });
-    return best;
-  }
+  function stopPoll() { clearInterval(poll); poll = 0; candidate = null; }
 
-  holder.addEventListener('pointerout', function (e) {
+  holder.addEventListener('pointermove', function (e) {
     if (e.pointerType !== 'mouse') return;
+    x = e.clientX; y = e.clientY;
     var item = itemOf(e.target);
-    if (!item || item.contains(e.relatedTarget)) return; // still inside the card
-    item.classList.remove('is-dismissed');
-    if (item === handoff) clearHandoff();
-    if (resting) return;
+    if (!item || item === active) { stopPoll(); return; } // in a gap, or already shown
+    if (item === candidate) return;
+    candidate = item; px = x; py = y;
+    clearInterval(poll);
+    poll = setInterval(function () {
+      if (Math.abs(x - px) + Math.abs(y - py) < SENSITIVITY) { var c = candidate; stopPoll(); show(c); }
+      else { px = x; py = y; }
+    }, INTERVAL);
+  });
+  holder.addEventListener('pointerleave', stopPoll);
 
-    var r = item.getBoundingClientRect();
-    if (e.clientY < r.bottom - 2) return; // didn't leave through the bottom
-    var below = cardBelow(item, e.clientX);
-    if (!below) return;
-    clearHandoff();
-    below.classList.add('is-handoff');
-    handoff = below;
-    handoffAt = Date.now();
+  // Keyboard: follow focus straight away.
+  holder.addEventListener('focusin', function (e) {
+    var item = itemOf(e.target);
+    if (item) { stopPoll(); show(item); }
   });
 
-  // Drop the hand-off if the pointer settles anywhere other than that card.
-  document.addEventListener('pointermove', function (e) {
-    if (resting && Math.abs(e.clientX - restX) + Math.abs(e.clientY - restY) > 3) {
-      resting = false;
-      holder.classList.remove('is-resting');
-    }
-    if (!handoff || handoff.contains(e.target)) return;
-    var other = itemOf(e.target);
-    if ((other && holder.contains(other)) || Date.now() - handoffAt > SETTLE) clearHandoff();
-  });
-
-  // ---- Close on click ----
-  // The link opens in a new tab; without this the card keeps focus (and the
-  // pointer) and is still open when you come back. It stays closed until the
-  // pointer leaves it, and no card opens on hover until the mouse moves (the
-  // clicked card shrinking can slide the next card under a still pointer).
-  holder.addEventListener('click', function (e) {
-    var link = e.target.closest('a[href]');
-    var item = itemOf(link);
-    if (!item) return;
-    clearHandoff();
-    item.classList.add('is-dismissed');
-    resting = true; restX = e.clientX; restY = e.clientY;
-    holder.classList.add('is-resting');
-    link.blur();
+  // Filtering can hide the card being shown.
+  var filters = document.getElementById('skill-filter-buttons');
+  if (filters) filters.addEventListener('click', function () {
+    setTimeout(function () { if (active && active.hidden) show(null); }, 0);
   });
 })();
 </script>

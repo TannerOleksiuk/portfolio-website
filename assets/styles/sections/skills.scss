@@ -1,11 +1,28 @@
+// Expanded look of a skill card (bar label + description). Used where the
+// details show inline: touch screens.
+@mixin skill-open {
+  .skill-bar:not(.skill-bar--nolabel) { height: 1.6rem; }
+  .skill-bar__text { opacity: 1; }
+
+  .skill-details { grid-template-rows: 1fr; }
+  .skill-details__inner { opacity: 1; padding: 0.6rem 0.7rem 0.8rem; }
+}
+
 .skills-section {
-  // Natural-flow grid (replaces Filterizr's absolute positioning) so cards can
-  // grow and push the rows below them down.
+  // Cards on the left, detail panel on the right (wide screens) or pinned to
+  // the bottom of the screen (narrow screens). Touch screens: no panel, the
+  // details show inline in each card.
+  .skills-layout {
+    display: grid;
+    gap: 1rem;
+    align-items: start;
+  }
+
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     gap: 0.6rem;
-    align-items: start; // only the hovered card grows, its row-mates keep their height
+    align-items: start;
   }
 
   .skill-item[hidden] { display: none; }
@@ -30,8 +47,8 @@
   }
 
   // ---- Confidence bar: full-width, square, doubles as the divider ----
-  // Thin at rest. On hover/focus it thickens and the label fades in while the
-  // description opens beneath it.
+  // Thin on the cards; thick with its label in the detail panel (and on
+  // touch screens, where cards show their details inline).
   .skill-bar {
     position: relative;
     height: 4px;
@@ -75,7 +92,7 @@
     background: rgba(get-light-color('accent-color'), 0.4);
   }
 
-  // ---- Description: in-flow, animates its own height ----
+  // ---- Description: inside each card, hidden unless shown inline ----
   .skill-details {
     display: grid;
     grid-template-rows: 0fr;
@@ -105,32 +122,96 @@
     }
   }
 
-  // `.is-handoff`: added by the script in partials/sections/skills.html to the
-  // card below when the pointer leaves an open card through its bottom edge, so
-  // that card is already opening as the one above closes and slides it up.
-  // `.is-dismissed`: the card's link was just clicked; stay closed until the
-  // pointer leaves.
-  // `.is-resting` (on the grid): a link was just clicked; nothing opens on
-  // hover until the mouse actually moves (the clicked card shrinking can slide
-  // another card under a still pointer).
-  .skills-grid:not(.is-resting) .skill-item:not(.is-dismissed):hover,
-  .skill-item:not(.is-dismissed):focus-within,
-  .skill-item.is-handoff {
-    .skill-bar:not(.skill-bar--nolabel) { height: 1.6rem; }
-    .skill-bar__text { opacity: 1; }
-
-    .skill-details { grid-template-rows: 1fr; }
-    .skill-details__inner { opacity: 1; padding: 0.6rem 0.7rem 0.8rem; }
+  // The card whose details the panel is showing.
+  .skill-item.is-active .card {
+    box-shadow: 0 0 0 2px get-light-color('accent-color');
   }
 
-  // Small expand delay (collapse is immediate) so sweeping the pointer across
-  // the grid doesn't make everything jump open.
-  // (A handed-off card opens with no delay, in step with the card above closing.)
-  .skill-item:not(.is-dismissed):not(.is-handoff):hover {
-    .skill-bar,
-    .skill-details,
-    .skill-details__inner,
-    .skill-bar__text { transition-delay: 0.08s; }
+  // ---- Detail panel ----
+  .skill-panel {
+    display: none; // shown below for pointer devices only
+    border-radius: 0.6rem;
+    overflow: hidden;
+    background: get-light-color('bg-card');
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    text-align: left;
+
+    &__empty { padding: 1rem; }
+    &__hint { margin: 0 0 0.75rem; font-size: 0.95rem; opacity: 0.8; }
+
+    &__legend {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1rem;
+      font-size: 0.85rem;
+
+      li { display: flex; align-items: center; gap: 0.4rem; }
+    }
+
+    &__swatch {
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 2px;
+    }
+
+    &__head {
+      display: flex;
+      align-items: center;
+      padding: 0.9rem 1rem 0.7rem;
+      background-color: get-light-color('bg-primary');
+
+      .card-img-xs { margin-right: 0.5rem; }
+      .card-title { margin: 0; }
+    }
+
+    // The cloned bar, shown at full size with its label.
+    &__bar {
+      .skill-bar { height: 1.6rem; }
+      .skill-bar--nolabel { height: 6px; }
+      .skill-bar__text { opacity: 1; }
+    }
+
+    &__summary {
+      padding: 0.9rem 1rem 0;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    &__link {
+      display: inline-block;
+      margin: 0.6rem 1rem 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    &__content { padding-bottom: 1rem; }
+  }
+
+  @media (hover: hover) {
+    .skill-panel { display: block; }
+  }
+
+  // Wide: panel in a column beside the cards, following you down the page.
+  @media (hover: hover) and (min-width: 992px) {
+    .skills-layout { grid-template-columns: minmax(0, 1fr) 20rem; }
+    .skill-panel {
+      position: sticky;
+      top: 5rem; // clear the fixed navbar
+    }
+  }
+
+  // Narrow: panel pinned to the bottom of the screen while the cards are in view.
+  @media (hover: hover) and (max-width: 991.98px) {
+    .skill-panel {
+      position: sticky;
+      bottom: 0.75rem;
+      max-height: 40vh;
+      overflow-y: auto;
+    }
   }
 
   .card:focus-visible {
@@ -143,12 +224,9 @@
     box-shadow: inset 0 -3px 0 get-light-color('accent-color');
   }
 
-  // Touch screens can't hover: show everything expanded.
+  // Touch screens can't hover: no panel, every card shows its details inline.
   @media (hover: none) {
-    .skill-bar:not(.skill-bar--nolabel) { height: 1.6rem; }
-    .skill-bar__text { opacity: 1; }
-    .skill-details { grid-template-rows: 1fr; }
-    .skill-details__inner { opacity: 1; padding: 0.6rem 0.7rem 0.8rem; }
+    .skill-item { @include skill-open; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -175,6 +253,12 @@ html[data-theme='dark'] {
       &__text { color: get-dark-color('text-color'); }
     }
     .skill-divider { background: rgba(get-dark-color('accent-color'), 0.4); }
+    .skill-item.is-active .card { box-shadow: 0 0 0 2px get-dark-color('accent-color'); }
+    .skill-panel {
+      background: get-dark-color('bg-card');
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+      &__head { background-color: get-dark-color('bg-primary'); }
+    }
     .skill-filter-btn.active { box-shadow: inset 0 -3px 0 get-dark-color('accent-color'); }
   }
 }
