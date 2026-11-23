@@ -105,8 +105,17 @@
     }
   }
 
-  .skill-item:hover,
-  .skill-item:focus-within {
+  // `.is-handoff`: added by the script in partials/sections/skills.html to the
+  // card below when the pointer leaves an open card through its bottom edge, so
+  // that card is already opening as the one above closes and slides it up.
+  // `.is-dismissed`: the card's link was just clicked; stay closed until the
+  // pointer leaves.
+  // `.is-resting` (on the grid): a link was just clicked; nothing opens on
+  // hover until the mouse actually moves (the clicked card shrinking can slide
+  // another card under a still pointer).
+  .skills-grid:not(.is-resting) .skill-item:not(.is-dismissed):hover,
+  .skill-item:not(.is-dismissed):focus-within,
+  .skill-item.is-handoff {
     .skill-bar:not(.skill-bar--nolabel) { height: 1.6rem; }
     .skill-bar__text { opacity: 1; }
 
@@ -116,7 +125,8 @@
 
   // Small expand delay (collapse is immediate) so sweeping the pointer across
   // the grid doesn't make everything jump open.
-  .skill-item:hover {
+  // (A handed-off card opens with no delay, in step with the card above closing.)
+  .skill-item:not(.is-dismissed):not(.is-handoff):hover {
     .skill-bar,
     .skill-details,
     .skill-details__inner,

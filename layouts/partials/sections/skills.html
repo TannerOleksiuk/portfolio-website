@@ -32,6 +32,88 @@
   </div>
 </div>
 
+<script>
+(function () {
+  var holder = document.getElementById('skill-card-holder');
+  if (!holder) return;
+
+  // ---- Hand-off to the card below ----
+  // Leaving an open card through its bottom edge opens the card directly below
+  // straight away. The card above then closes and slides that card up under the
+  // pointer, which is already inside it instead of in the gap.
+  var handoff = null, handoffAt = 0;
+  var resting = false, restX = 0, restY = 0; // see "Close on click" below
+  var SETTLE = 400; // ms: about the length of the open/close transition
+
+  function itemOf(node) {
+    return node && node.closest ? node.closest('.skill-item') : null;
+  }
+
+  function clearHandoff() {
+    if (handoff) handoff.classList.remove('is-handoff');
+    handoff = null;
+  }
+
+  function cardBelow(item, x) {
+    var r = item.getBoundingClientRect();
+    var best = null, bestTop = Infinity;
+    holder.querySelectorAll('.skill-item:not([hidden])').forEach(function (el) {
+      if (el === item) return;
+      var b = el.getBoundingClientRect();
+      if (b.top >= r.bottom - 1 && b.left <= x && x <= b.right && b.top < bestTop) {
+        best = el; bestTop = b.top;
+      }
+    });
+    return best;
+  }
+
+  holder.addEventListener('pointerout', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var item = itemOf(e.target);
+    if (!item || item.contains(e.relatedTarget)) return; // still inside the card
+    item.classList.remove('is-dismissed');
+    if (item === handoff) clearHandoff();
+    if (resting) return;
+
+    var r = item.getBoundingClientRect();
+    if (e.clientY < r.bottom - 2) return; // didn't leave through the bottom
+    var below = cardBelow(item, e.clientX);
+    if (!below) return;
+    clearHandoff();
+    below.classList.add('is-handoff');
+    handoff = below;
+    handoffAt = Date.now();
+  });
+
+  // Drop the hand-off if the pointer settles anywhere other than that card.
+  document.addEventListener('pointermove', function (e) {
+    if (resting && Math.abs(e.clientX - restX) + Math.abs(e.clientY - restY) > 3) {
+      resting = false;
+      holder.classList.remove('is-resting');
+    }
+    if (!handoff || handoff.contains(e.target)) return;
+    var other = itemOf(e.target);
+    if ((other && holder.contains(other)) || Date.now() - handoffAt > SETTLE) clearHandoff();
+  });
+
+  // ---- Close on click ----
+  // The link opens in a new tab; without this the card keeps focus (and the
+  // pointer) and is still open when you come back. It stays closed until the
+  // pointer leaves it, and no card opens on hover until the mouse moves (the
+  // clicked card shrinking can slide the next card under a still pointer).
+  holder.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href]');
+    var item = itemOf(link);
+    if (!item) return;
+    clearHandoff();
+    item.classList.add('is-dismissed');
+    resting = true; restX = e.clientX; restY = e.clientY;
+    holder.classList.add('is-resting');
+    link.blur();
+  });
+})();
+</script>
+
 {{ if .section.filter }}
 <script>
 (function () {
