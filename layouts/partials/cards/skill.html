@@ -45,7 +45,7 @@
 {{- end -}}
 {{- $hasDetails := or $s.summary $url -}}
 
-<div class="col-xs-12 col-sm-6 col-lg-4 pt-2 filtr-item skill-item"
+<div class="skill-item"
   data-category='all, {{ with $s.categories }}{{ delimit . ","}}{{ end }}'
 >
   <a class="text-decoration-none" {{ if $url }}href="{{ $url }}" title="{{ $s.name }}" target="_blank" rel="noopener"{{ end }}>
@@ -67,24 +67,26 @@
       </div>
 
       {{ if $hasLevel }}
-      <div class="skill-bar-wrap">
-        <div class="skill-bar" role="meter" aria-label="{{ $s.name }} confidence"
-             aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ $s.level }}"
-             aria-valuetext="{{ $tier.label }}"
-             style="--pct: {{ $s.level }}%; --tier: {{ $tier.color }};">
-          <span class="skill-bar__fill"></span>
-          {{ if $showLabel }}
-          <span class="skill-bar__text">{{ $label }}</span>
-          <span class="skill-bar__text skill-bar__text--on-fill" aria-hidden="true">{{ $label }}</span>
-          {{ end }}
-        </div>
+      <div class="skill-bar{{ if not $showLabel }} skill-bar--nolabel{{ end }}" role="meter" aria-label="{{ $s.name }} confidence"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ $s.level }}"
+           aria-valuetext="{{ $tier.label }}"
+           style="--pct: {{ $s.level }}%; --tier: {{ $tier.color }};">
+        <span class="skill-bar__fill"></span>
+        {{ if $showLabel }}
+        <span class="skill-bar__text">{{ $label }}</span>
+        <span class="skill-bar__text skill-bar__text--on-fill" aria-hidden="true">{{ $label }}</span>
+        {{ end }}
       </div>
+      {{ else }}
+      <div class="skill-divider"></div>
       {{ end }}
 
       {{ if $hasDetails }}
       <div class="skill-details">
-        {{ with $s.summary }}<p class="card-text">{{ . | markdownify }}</p>{{ end }}
-        {{ if $url }}<span class="skill-details__proof">{{ $s.project_label | default "See it in practice" }}</span>{{ end }}
+        <div class="skill-details__inner">
+          {{ with $s.summary }}<p class="card-text">{{ . | markdownify }}</p>{{ end }}
+          {{ if $url }}<span class="skill-details__proof">{{ $s.project_label | default "See it in practice" }}</span>{{ end }}
+        </div>
       </div>
       {{ end }}
     </div>

@@ -12,24 +12,86 @@
         <span id="{{ $sectionID }}"></span>{{ .section.name }}</h1>
   {{ end }}
   {{ if .section.filter }}
-  <div class="container ms-auto text-center">
+  <div class="container ms-auto text-center pb-2">
     <div class="btn-group flex-wrap" role="group" id="skill-filter-buttons">
-      {{ range .buttons }}
-      <button type="button" class="btn btn-dark skill-filtr-control" data-filter="{{ .filter }}">
-        {{ .name }}
+      {{ range $i, $b := .buttons }}
+      <button type="button" class="btn btn-dark skill-filter-btn{{ if eq $i 0 }} active{{ end }}"
+              data-filter="{{ $b.filter }}" aria-pressed="{{ if eq $i 0 }}true{{ else }}false{{ end }}">
+        {{ $b.name }}
       </button>
       {{ end }}
     </div>
   </div>
-  <div class="container d-flex-block filtr-skills">
-    <div class="row" id="skill-card-holder" style="margin-left:unset">
-  {{ else }}
-  <div class="container d-flex-block">
-    <div class="row" id="primary-skills">
   {{ end }}
+  <div class="container d-flex-block">
+    <div class="skills-grid" id="skill-card-holder">
       {{ range .skills }}
       {{ partial "cards/skill.html" (dict "skill" . "cfg" $) }}
-    {{ end }}
+      {{ end }}
     </div>
   </div>
 </div>
+
+{{ if .section.filter }}
+<script>
+(function () {
+  var holder = document.getElementById('skill-card-holder');
+  var buttons = document.querySelectorAll('#skill-filter-buttons .skill-filter-btn');
+  if (!holder || !buttons.length) return;
+
+  var items = Array.prototype.slice.call(holder.querySelectorAll('.skill-item'));
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canAnimate = typeof Element.prototype.animate === 'function' && !reduce;
+
+  function tags(el) {
+    return el.getAttribute('data-category').split(',').map(function (s) { return s.trim(); });
+  }
+
+  function applyFilter(filter) {
+    // First: remember where the cards that are already visible sit.
+    var before = new Map();
+    items.forEach(function (el) { if (!el.hidden) before.set(el, el.getBoundingClientRect()); });
+
+    // Last: leaving cards vanish instantly, arriving cards are collected.
+    var entering = [];
+    items.forEach(function (el) {
+      var show = tags(el).indexOf(filter) !== -1;
+      if (show && el.hidden) entering.push(el);
+      el.hidden = !show;
+    });
+    if (!canAnimate) return;
+
+    // Invert + play: cards that stay glide to their new spot.
+    before.forEach(function (rect, el) {
+      if (el.hidden) return;
+      var now = el.getBoundingClientRect();
+      var dx = rect.left - now.left, dy = rect.top - now.top;
+      if (dx || dy) {
+        el.animate(
+          [{ transform: 'translate(' + dx + 'px,' + dy + 'px)' }, { transform: 'none' }],
+          { duration: 300, easing: 'cubic-bezier(.2,.7,.2,1)' }
+        );
+      }
+    });
+
+    // New cards fade in once the others have settled, lightly staggered.
+    entering.forEach(function (el, i) {
+      el.animate(
+        [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 320, delay: 150 + Math.min(i * 25, 250), easing: 'ease-out', fill: 'backwards' }
+      );
+    });
+  }
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      buttons.forEach(function (b) {
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      applyFilter(btn.getAttribute('data-filter'));
+    });
+  });
+})();
+</script>
+{{ end }}
